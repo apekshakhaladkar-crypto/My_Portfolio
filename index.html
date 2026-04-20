@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apeksha RK | Professional Portfolio</title>
+<script>
+  // This line must exist to show the icons
+  lucide.createIcons();
+</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <header class="fixed-header">
+  <div class="flex items-center gap-3">
+    <div class="w-2 h-2 bg-cyan-500 animate-pulse rounded-full shadow-[0_0_10px_#00f2ff]"></div>
+    <span class="text-[10px] font-mono tracking-widest text-slate-400 uppercase">IT Engineering Student @ MITAOE</span>
+  </div>
+</header>
+  <div class="bg-grid"></div>
+
+  <div id="universalModal">
+    <div class="relative w-full flex flex-col items-center">
+        <button id="closeModal" class="absolute -top-12 right-[7.5%] text-white hover:text-cyan-400 transition">
+            <i data-lucide="x-circle" class="w-8 h-8"></i>
+        </button>
+        <iframe id="modalFrame" src="resume.pdf"></iframe>
+    </div>
+  </div>
+
+  <nav class="sidebar">
+    <a href="#home" class="nav-link active"><i data-lucide="home"></i> Home</a>
+    <a href="#about" class="nav-link"><i data-lucide="user"></i> About</a>
+    <a href="#skills" class="nav-link"><i data-lucide="terminal"></i> Skills</a>
+    <a href="#projects" class="nav-link"><i data-lucide="cpu"></i> Projects</a>
+    <a href="#resume" class="nav-link"><i data-lucide="file-text"></i> Resume</a>
+    <a href="#certificates" class="nav-link"><i data-lucide="award"></i> Certificates</a>
+    <a href="#contact" class="nav-link"><i data-lucide="message-circle"></i> Contact</a>
+  </nav>
+
+  <main>
+    <section id="home" class="tab-section flex flex-col justify-center max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <span class="text-cyan-400 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">~IT Engineering Student @MITAOE</span>
+          <h1 class="heading-font text-6xl md:text-8xl font-bold leading-none mb-6">
+            APEKSHA <br> <span class="text-transparent uppercase" style="-webkit-text-stroke: 1px var(--neon-cyan);">KHALADKAR</span>
+          </h1>
+          <p class="text-slate-400 text-lg mb-8 max-w-md border-l-2 border-cyan-500 pl-6">
+            IT Engineering student @ MITAOE. Bridging the gap between 
+            <span class="text-white">Python Automation</span> and <span class="text-white">Hardware Systems</span>.
+          </p>
+          <div class="flex gap-4">
+            <a href="#contact" class="glass-card px-8 py-4 text-xs font-bold uppercase tracking-widest hover:text-cyan-400 transition flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4"></i> Contact
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center" data-aos="zoom-in">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-50 transition"></div>
+            <div class="w-64 h-80 glass-card relative overflow-hidden">
+              <img src="photo/profile.jpeg" alt="Apeksha" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="tab-section max-w-6xl mx-auto">
+      <div class="mb-8">
+  <span class="title-prefix">// BACKGROUND</span>
+  <h2 class="section-title">ABOUT <span class="text-transparent" style="-webkit-text-stroke: 1px var(--neon-cyan);">ME</span></h2>
+</div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="md:col-span-2 glass-card p-10 neon-border" data-aos="fade-up">
+          <h3 class="text-xl font-bold mb-4">MIT Academy of Engineering</h3>
+          <p class="text-slate-400 leading-relaxed mb-8">
+            Currently pursuing B.Tech in Information Technology. Focused on solving 
+            complex engineering problems through code and logical design. 
+            Part of the I14 batch, maintaining a strong academic standing.
+          </p>
+          <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/5">
+            <div>
+              <p class="text-[10px] uppercase text-cyan-500 font-bold">CGPA</p>
+              <span class="text-3xl font-bold">8.67</span>
+            </div>
+            <div>
+              <p class="text-[10px] uppercase text-cyan-500 font-bold">Graduation</p>
+              <span class="text-3xl font-bold">2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-cyan-500 font-bold mb-6 tracking-widest uppercase text-xs">Core Focus</h3>
+          <ul class="space-y-4 text-sm font-medium">
+            <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-cyan-500"></i> AI</li>
+            <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-cyan-500"></i> Robotics</li>
+            <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-cyan-500"></i> Coding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="tab-section max-w-6xl mx-auto">
+      <div class="mb-8">
+  <span class="title-prefix">// TECH_ARRAY</span>
+  <h2 class="section-title">SKILL <span class="text-transparent" style="-webkit-text-stroke: 1px var(--neon-cyan);">MATRIX</span></h2>
+</div>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+        <div class="glass-card p-6" data-aos="fade-right">
+          <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>Python</span><span>75%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 75%"></div></div>
+        </div>
+        <div class="glass-card p-6" data-aos="fade-left">
+          <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>C Programming</span><span>85%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%"></div></div>
+        </div>
+        <div class="glass-card p-6" data-aos="fade-right">
+          <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>HTML / CSS</span><span>80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%"></div></div>
+        </div>
+        <div class="glass-card p-6" data-aos="fade-left">
+          <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>VS Code</span><span>85%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%"></div></div>
+        </div>
+        <div class="glass-card p-6" data-aos="fade-right">
+          <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>Tableau</span><span>80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%"></div></div>
+        </div>
+        <div class="glass-card p-6" data-aos="fade-left">
+          <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>Arduino IDE</span><span>90%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="tab-section max-w-6xl mx-auto">
+      <div class="mb-8">
+  <span class="title-prefix">// DEPLOYED_ASSETS</span>
+  <h2 class="section-title">LATEST <span class="text-transparent" style="-webkit-text-stroke: 1px var(--neon-cyan);">PROJECTS</span></h2>
+</div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass-card group" data-aos="fade-up">
+          <div class="h-40 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+            <i data-lucide="bot" class="w-12 h-12 text-cyan-500/20 group-hover:scale-110 transition duration-500"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">Smart Cleaning Robot</h3>
+            <p class="text-slate-400 text-xs mb-4">Autonomous mopping system with L298N drivers and ultrasonic sensing.</p>
+          </div>
+        </div>
+        <div class="glass-card group" data-aos="fade-up" data-aos-delay="100">
+          <div class="h-40 bg-slate-900 flex items-center justify-center">
+            <i data-lucide="layout" class="w-12 h-12 text-cyan-500/20 group-hover:scale-110 transition duration-500"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">Libris System</h3>
+            <p class="text-slate-400 text-xs mb-4">Advanced library management with Tableau data grains and Python automation.</p>
+          </div>
+        </div>
+        <div class="glass-card group" data-aos="fade-up" data-aos-delay="200">
+          <div class="h-40 bg-slate-900 flex items-center justify-center">
+            <i data-lucide="heart" class="w-12 h-12 text-cyan-500/20 group-hover:scale-110 transition duration-500"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">Family Website</h3>
+            <p class="text-slate-400 text-xs mb-4">A personalized web space developed to showcase family history and photos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="tab-section max-w-6xl mx-auto">
+     <div class="mb-8">
+  <span class="title-prefix">// DOCUMENT_ARCHIVE</span>
+  <h2 class="section-title">PROFESSIONAL <span class="text-transparent" style="-webkit-text-stroke: 1px var(--neon-cyan);">RESUME</span></h2>
+</div>
+      <div class="flex flex-col justify-center items-center gap-8">
+        <div id="viewResumeBtn" class="w-64 h-80 glass-card mx-auto cursor-pointer relative group flex items-center justify-center bg-slate-900">
+          <img src="resume-preview.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-110 transition duration-700" alt="Resume">
+          <div class="relative z-10 flex flex-col items-center gap-4 text-center px-4">
+            <i data-lucide="eye" class="w-12 h-12 text-cyan-400"></i>
+            <span class="text-xs font-bold tracking-widest uppercase">Open Interactive CV</span>
+          </div>
+        </div>
+        <a href="resume.pdf" download class="bg-cyan-600 hover:bg-cyan-500 text-black px-10 py-4 rounded-full font-bold transition flex items-center gap-2 text-xs uppercase tracking-widest">
+          <i data-lucide="download" class="w-4 h-4"></i> Download PDF
+        </a>
+      </div>
+    </section>
+<section id="certificates" class="tab-section max-w-6xl mx-auto">
+      <div class="mb-8">
+  <span class="title-prefix">// VERIFIED_CREDENTIALS</span>
+  <h2 class="section-title">SKILL <span class="text-transparent" style="-webkit-text-stroke: 1px var(--neon-cyan);">CERTIFICATES</span></h2>
+</div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <a href="certificates/nasscon-certificate.pdf" target="_blank" class="glass-card p-8 block group hover:border-cyan-500 transition-all">
+          <div class="flex justify-between items-start mb-6">
+            <div class="p-3 bg-cyan-500/10 rounded-lg"><i data-lucide="award" class="text-cyan-500"></i></div>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-cyan-400"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2 uppercase tracking-tight">NASSCOM</h4>
+          <p class="text-[10px] text-slate-500 font-mono tracking-widest uppercase">Digital Literacy // View PDF</p>
+        </a>
+
+        <a href="certificates/IBM.pdf" target="_blank" class="glass-card p-8 block group hover:border-cyan-500 transition-all">
+          <div class="flex justify-between items-start mb-6">
+            <div class="p-3 bg-cyan-500/10 rounded-lg"><i data-lucide="award" class="text-cyan-500"></i></div>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-cyan-400"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2 uppercase tracking-tight">IBM</h4>
+          <p class="text-[10px] text-slate-500 font-mono tracking-widest uppercase">Python for Data Science // View PDF</p>
+        </a>
+
+        <a href="certificates/cisco-python-essentials.pdf" target="_blank" class="glass-card p-8 block group hover:border-cyan-500 transition-all">
+          <div class="flex justify-between items-start mb-6">
+            <div class="p-3 bg-cyan-500/10 rounded-lg"><i data-lucide="award" class="text-cyan-500"></i></div>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-cyan-400"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2 uppercase tracking-tight">Cisco Networking Academy</h4>
+          <p class="text-[10px] text-slate-500 font-mono tracking-widest uppercase">Python Essentials // View PDF</p>
+        </a>
+
+        <a href="certificates/anthropic.pdf" target="_blank" class="glass-card p-8 block group hover:border-cyan-500 transition-all">
+          <div class="flex justify-between items-start mb-6">
+            <div class="p-3 bg-cyan-500/10 rounded-lg"><i data-lucide="award" class="text-cyan-500"></i></div>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-cyan-400"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2 uppercase tracking-tight">Anthropic</h4>
+          <p class="text-[10px] text-slate-500 font-mono tracking-widest uppercase">AI Workshop // View PDF</p>
+        </a>
+
+        <a href="certificates/algovedas.pdf" target="_blank" class="glass-card p-8 block group hover:border-cyan-500 transition-all">
+          <div class="flex justify-between items-start mb-6">
+            <div class="p-3 bg-cyan-500/10 rounded-lg"><i data-lucide="award" class="text-cyan-500"></i></div>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-cyan-400"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2 uppercase tracking-tight">Algo Vedas</h4>
+          <p class="text-[10px] text-slate-500 font-mono tracking-widest uppercase">DSA Training // View PDF</p>
+        </a>
+
+      </div>
+    
+    </section>
+
+    <section id="contact" class="tab-section max-w-6xl mx-auto">
+        <div class="mb-8">
+  <span class="title-prefix">// UPLINK_PROTOCOL</span>
+  <h2 class="section-title">GET IN <span class="text-transparent" style="-webkit-text-stroke: 1px var(--neon-cyan);">TOUCH</span></h2>
+</div>
+        <div class="glass-card p-12 max-w-4xl mx-auto" data-aos="fade-up">
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-6">Let's <span class="text-cyan-400">Connect</span>.</h3>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4 text-slate-300">
+                        <i data-lucide="mail" class="w-5 h-5 text-cyan-500"></i>
+                        <span>apekshakhaladkar@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-300">
+                        <i data-lucide="phone" class="w-5 h-5 text-cyan-500"></i>
+                        <span>+91 7823835665</span>
+                    </div>
+                    <div class="flex gap-4 mt-8">
+                      <a href="https://linkedin.com/in/apeksha-rk" target="_blank" class="p-3 bg-white/5 rounded-full hover:text-cyan-400 transition"><i data-lucide="linkedin"></i><span>LinkedIn</span></a>
+                      <a href="https://github.com/apekshakhaladkar-crypto" target="_blank" class="p-3 bg-white/5 rounded-full hover:text-cyan-400 transition"><i data-lucide="github"></i><span>GitHub</span></a>
+                    </div>
+                </div>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Name" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 focus:border-cyan-500 outline-none transition">
+                <input type="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 focus:border-cyan-500 outline-none transition">
+                <textarea placeholder="Message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 focus:border-cyan-500 outline-none transition"></textarea>
+                <button class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-bold py-4 rounded-lg transition uppercase tracking-widest text-xs">Send Transmission</button>
+            </form>
+          </div>
+        </div>
+        <footer class="fixed-footer">
+  <div class="flex gap-6 text-[9px] font-bold tracking-[0.3em] text-slate-500 uppercase">
+    <span>Apeksha RK Portfolio</span>
+    <span class="text-cyan-900">|</span>
+  
+    <span class="text-cyan-900">|</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    lucide.createIcons();
+    AOS.init({ duration: 1000, once: true });
+
+    const modal = document.getElementById('universalModal');
+    const viewBtn = document.getElementById('viewResumeBtn');
+    const closeBtn = document.getElementById('closeModal');
+
+    viewBtn.onclick = () => modal.style.display = 'flex';
+    closeBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
+
+    const sections = document.querySelectorAll('.tab-section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+   
+  </script>
+</body>
+</html>

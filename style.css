@@ -1,0 +1,228 @@
+/* --- 1. GLOBAL VARIABLES & RESET --- */
+:root {
+      --neon-cyan: #00f2ff;
+      --bg-dark: #05070a;
+      --card-bg: rgba(16, 18, 27, 0.4);
+      --sidebar-width: 100px;
+    }
+
+    * { cursor: crosshair; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #f5f2f2;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .heading-font { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Animated Grid Background */
+    .bg-grid {
+      background-image: linear-gradient(rgba(105, 107, 107, 0.13) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(131, 136, 136, 0.082) 1px, transparent 1px);
+      background-size: 40px 40px;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed; top: 0; left: 0; height: 100vh; width: var(--sidebar-width);
+      background: rgba(12, 13, 14, 0.8);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(0, 242, 255, 0.1);
+      z-index: 100;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: #4b5563; transition: 0.4s;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      text-decoration: none; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    }
+
+    .nav-link i { width: 22px; height: 22px; transition: 0.4s; }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    .nav-link.active i { transform: scale(1.2); filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+
+    /* Skill Bars */
+    .skill-bar-bg { background: rgba(255, 255, 255, 0.05); height: 6px; border-radius: 10px; width: 100%; margin-top: 8px; }
+    .skill-bar-fill { background: var(--neon-cyan); height: 100%; border-radius: 10px; box-shadow: 0 0 10px var(--neon-cyan); }
+
+    /* Content Area */
+    main { margin-left: var(--sidebar-width); }
+
+    .tab-section { min-height: 100vh; padding: 4rem 2rem; }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
+    }
+
+    .glass-card:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-5px);
+      background: rgba(0, 242, 255, 0.02);
+    }
+
+    .neon-border { border-left: 3px solid var(--neon-cyan); padding-left: 1.5rem; }
+
+    /* Modal / Resume Viewer */
+    #universalModal {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0, 0, 0, 0.9); justify-content: center;
+      align-items: center; backdrop-filter: blur(15px);
+    }
+
+    #modalFrame {
+      height: 85vh; width: 85%; border-radius: 8px; border: 1px solid var(--neon-cyan); 
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { width: 100%; height: 60px; bottom: 0; top: auto; flex-direction: row; border-right: 0; border-top: 1px solid rgba(0, 242, 255, 0.1); }
+      main { margin-left: 0; padding-bottom: 60px; }
+      .tab-section { padding: 2rem 1rem; }
+    }
+    /* Pinned Header */
+header.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 100px; /* Matches your sidebar width */
+  right: 0;
+  height: 70px;
+  background: rgba(5, 7, 10, 0.8);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+/* Pinned Footer */
+footer.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 100px; /* Matches your sidebar width */
+  right: 0;
+  height: 50px;
+  background: rgba(5, 7, 10, 0.8);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(0, 242, 255, 0.1);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Push content down so it doesn't start under the header */
+main {
+  margin-top: 70px; 
+  margin-bottom: 50px;
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+  header.fixed-header, footer.fixed-footer { left: 0; }
+}
+/* Main Hero Name */
+    h1.heading-font {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.85;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+    }
+
+    /* Resume & Certificate Titles */
+    #resume .section-title, 
+    #certificates .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 0.8 !important;
+      margin-bottom: 0.5rem !important;
+    }
+
+    /* Small Tag above the title */
+    .title-prefix {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      letter-spacing: 6px;
+      font-weight: 700;
+      opacity: 0.8;
+      display: block;
+    }
+    /* Main Name Font */
+    .hero-name {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    /* Section Headers Font (Medium-Large Size) */
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem); /* Medium size: not too big, not too small */
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Small technical prefix */
+    .title-prefix {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: var(--neon-cyan);
+      letter-spacing: 4px;
+      font-weight: 700;
+      opacity: 0.8;
+      display: block;
+    }
+    /* Medium Font Scaling for Resume/Certs */
+    #resume .section-title, 
+    #certificates .section-title {
+      font-size: 2.5rem; /* Forces medium size specifically for these two */
+      letter-spacing: 1px;
+    }
+
+    /* Tighten the boxes */
+    #certificates .glass-card {
+      min-height: 140px; /* Ensures all boxes are the same height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Global size fix for the 'Download' button */
+    .btn-medium {
+      padding: 12px 30px;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+    /* Hover glow for social icons */
+    .flex.gap-6 a:hover {
+      background: rgba(0, 242, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+      transform: translateY(-3px);
+    }
