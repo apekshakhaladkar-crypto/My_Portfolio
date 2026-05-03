@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apeksha RK | FY IT Engineering Student</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --cream:#faf8f4;--white:#ffffff;--navy:#1a2744;--blue:#2d5be3;
+      --blue-light:#e8eeff;--accent:#f4a826;--accent-light:#fff8ec;
+      --gray:#6b7280;--gray-light:#f3f4f6;--border:#e5e7eb;--text:#1f2937;
+      --shadow:0 4px 24px rgba(45,91,227,0.10);--shadow-lg:0 8px 40px rgba(45,91,227,0.15);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;box-shadow:0 2px 16px rgba(26,39,68,0.06);}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--navy);}
+    .nav-logo span{color:var(--blue);}
+    .nav-links{display:flex;gap:1.3rem;list-style:none;align-items:center;}
+    .nav-links a{text-decoration:none;color:var(--gray);font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--blue);}
+    .nav-cta{background:var(--blue)!important;color:#fff!important;padding:0.45rem 1.1rem;border-radius:6px;font-weight:600!important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .hamburger span{width:24px;height:2px;background:var(--navy);border-radius:2px;}
+
+    /* HERO */
+    #home{min-height:100vh;display:flex;align-items:center;padding:100px 5% 60px;background:linear-gradient(135deg,#f0f4ff 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+    #home::before{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,#dce8ff 0%,transparent 70%);border-radius:50%;z-index:0;}
+    .hero-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1;}
+    .hero-text{animation:fadeUp 0.8s ease both;}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.4rem;background:var(--blue-light);color:var(--blue);padding:0.35rem 0.9rem;border-radius:50px;font-size:0.82rem;font-weight:600;margin-bottom:1.2rem;}
+    .hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:900;line-height:1.15;color:var(--navy);margin-bottom:0.5rem;}
+    .hero-text h1 .highlight{color:var(--blue);}
+    .hero-typed{font-size:1.05rem;color:var(--blue);font-weight:600;margin-bottom:1.4rem;min-height:1.5em;}
+    .hero-typed::after{content:'|';animation:blink 0.8s infinite;margin-left:2px;}
+    .hero-subtitle{font-size:1rem;color:var(--gray);line-height:1.7;margin-bottom:1.6rem;}
+    .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-primary{background:var(--blue);color:#fff;padding:0.75rem 1.8rem;border-radius:8px;font-size:0.93rem;font-weight:600;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem;}
+    .btn-primary:hover{background:var(--navy);transform:translateY(-2px);box-shadow:var(--shadow);}
+    .btn-outline{border:2px solid var(--blue);color:var(--blue);padding:0.75rem 1.8rem;border-radius:8px;font-size:0.93rem;font-weight:600;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem;background:transparent;}
+    .btn-outline:hover{background:var(--blue);color:#fff;transform:translateY(-2px);}
+    .hero-socials{display:flex;gap:0.8rem;margin-top:2rem;}
+    .hero-socials a{width:38px;height:38px;border-radius:8px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:1rem;text-decoration:none;transition:all 0.2s;box-shadow:var(--shadow);}
+    .hero-socials a:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-2px);}
+    .stats-row{display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap;}
+    .stat-item .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--navy);display:block;}
+    .stat-item .label{font-size:0.78rem;color:var(--gray);font-weight:500;}
+
+    /* HERO PHOTO — no upload button, just an img tag */
+    .hero-photo{display:flex;justify-content:center;animation:fadeUp 0.9s 0.15s ease both;}
+    .photo-wrapper{position:relative;width:300px;height:360px;}
+    .photo-frame{width:100%;height:100%;border-radius:24px;overflow:hidden;border:4px solid var(--white);box-shadow:var(--shadow-lg);background:linear-gradient(135deg,var(--blue-light),#f0f4ff);display:flex;align-items:center;justify-content:center;}
+    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+    .photo-ph{display:flex;flex-direction:column;align-items:center;gap:0.8rem;text-align:center;padding:2rem;color:var(--gray);}
+    .photo-ph i{font-size:5rem;color:var(--blue);opacity:0.2;}
+    .photo-ph p{font-size:0.8rem;line-height:1.5;}
+    .photo-badge{position:absolute;top:-14px;right:-14px;background:var(--accent);color:var(--navy);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.75rem;font-weight:700;box-shadow:var(--shadow);}
+    .photo-ring{position:absolute;bottom:-10px;left:-10px;width:56px;height:56px;border-radius:50%;background:var(--blue-light);border:3px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:var(--shadow);}
+
+    /* SECTIONS */
+    section{padding:90px 5%;}
+    .section-header{text-align:center;margin-bottom:3.5rem;}
+    .section-label{display:inline-block;background:var(--blue-light);color:var(--blue);padding:0.3rem 0.9rem;border-radius:50px;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.8rem;}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;color:var(--navy);line-height:1.2;}
+    .section-sub{color:var(--gray);margin-top:0.6rem;font-size:1rem;}
+    .inner{max-width:1200px;margin:0 auto;}
+
+    /* ABOUT */
+    #about{background:var(--white);}
+    .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+    .about-photo-wrap{width:100%;border-radius:20px;overflow:hidden;aspect-ratio:4/5;border:3px solid var(--border);background:linear-gradient(135deg,var(--blue-light),#f0f4ff);display:flex;align-items:center;justify-content:center;}
+    .about-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .no-img-ph{display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;padding:3rem 2rem;color:var(--gray);}
+    .no-img-ph i{font-size:5rem;color:var(--blue);opacity:0.2;}
+    .about-info h3{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--navy);font-weight:900;margin-bottom:0.4rem;}
+    .about-role{color:var(--blue);font-weight:600;margin-bottom:1.2rem;}
+    .about-desc{color:var(--gray);line-height:1.8;margin-bottom:1.8rem;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.8rem;}
+    .info-item{display:flex;align-items:center;gap:0.6rem;}
+    .info-item i{color:var(--blue);width:16px;font-size:0.85rem;}
+    .info-item span{font-size:0.88rem;color:var(--gray);}
+    .info-item strong{color:var(--text);}
+
+    /* SKILL TABS */
+    .skills-tabs-wrap{margin-top:1.8rem;}
+    .skills-tabs-wrap h4{font-weight:700;color:var(--navy);margin-bottom:1rem;font-size:1rem;}
+    .tab-buttons{display:flex;border-radius:10px;overflow:hidden;border:1.5px solid var(--border);width:fit-content;margin-bottom:1.2rem;}
+    .tab-btn{padding:0.5rem 1.3rem;font-size:0.84rem;font-weight:600;cursor:pointer;border:none;background:var(--white);color:var(--gray);transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+    .tab-btn.active{background:var(--blue);color:#fff;}
+    .tab-panel{display:none;}
+    .tab-panel.active{display:flex;flex-wrap:wrap;gap:0.5rem;}
+    .skill-tag{background:var(--blue-light);color:var(--blue);padding:0.35rem 0.85rem;border-radius:6px;font-size:0.82rem;font-weight:600;}
+    .hobby-tag{background:var(--accent-light);color:#b45309;padding:0.35rem 0.85rem;border-radius:6px;font-size:0.82rem;font-weight:600;}
+
+    /* SKILL BARS */
+    #skillbars{background:var(--cream);}
+    .skillbars-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 3rem;max-width:900px;margin:0 auto;}
+    .sb-item{padding:1.1rem 1.4rem;background:var(--white);border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow);}
+    .sb-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.7rem;}
+    .sb-name{font-size:0.82rem;font-weight:800;color:var(--navy);letter-spacing:0.5px;text-transform:uppercase;}
+    .sb-pct{font-size:0.85rem;font-weight:800;color:var(--blue);}
+    .sb-track{height:6px;background:var(--gray-light);border-radius:50px;overflow:hidden;}
+    .sb-fill{height:100%;width:0%;border-radius:50px;background:linear-gradient(90deg,var(--blue),#6b8ff7);transition:width 1.3s cubic-bezier(0.4,0,0.2,1);}
+    .sb-fill.go{width:var(--w);}
+
+    /* PROJECTS */
+    #projects{background:var(--white);}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;}
+    .project-card{background:var(--cream);border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);transition:all 0.3s;}
+    .project-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+    .proj-img{height:180px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;position:relative;}
+    .proj-img i{font-size:3.5rem;color:var(--blue);opacity:0.45;}
+    .proj-tag{position:absolute;top:12px;left:12px;background:var(--blue);color:#fff;padding:0.2rem 0.65rem;border-radius:4px;font-size:0.72rem;font-weight:700;}
+    .project-body{padding:1.4rem;}
+    .project-body h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--navy);font-weight:700;margin-bottom:0.5rem;}
+    .project-body p{color:var(--gray);font-size:0.88rem;line-height:1.6;margin-bottom:1rem;}
+    .project-tech{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+    .tech-tag{background:var(--gray-light);color:var(--text);padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:600;}
+    .project-links{display:flex;gap:0.7rem;}
+    .project-links a{flex:1;text-align:center;padding:0.5rem;border-radius:7px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;}
+    .link-github{border:1.5px solid var(--border);color:var(--text);}
+    .link-github:hover{background:var(--gray-light);}
+    .link-demo{background:var(--blue);color:#fff;}
+    .link-demo:hover{background:var(--navy);}
+
+    /* CERTIFICATES */
+    #certificates{background:var(--cream);}
+    .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.2rem;}
+    .cert-card{background:var(--white);border-radius:14px;padding:1.4rem;border:1.5px solid var(--border);display:flex;align-items:flex-start;gap:1rem;transition:all 0.25s;}
+    .cert-card:hover{border-color:var(--blue);box-shadow:var(--shadow);transform:translateY(-3px);}
+    .cert-icon{width:50px;height:50px;border-radius:12px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4rem;color:var(--blue);}
+    .cert-info h4{font-weight:700;color:var(--navy);font-size:0.95rem;margin-bottom:0.25rem;}
+    .cert-info .issuer{color:var(--blue);font-size:0.82rem;font-weight:600;margin-bottom:0.3rem;}
+    .cert-info .cdate{color:var(--gray);font-size:0.78rem;}
+    .cert-info .credential{display:inline-flex;align-items:center;gap:0.3rem;color:var(--accent);font-size:0.75rem;font-weight:600;margin-top:0.5rem;text-decoration:none;}
+    .cert-info .credential:hover{text-decoration:underline;}
+
+    /* EDUCATION */
+    #education{background:var(--white);}
+    .timeline{max-width:700px;margin:0 auto;position:relative;}
+    .timeline::before{content:'';position:absolute;left:22px;top:0;bottom:0;width:2px;background:var(--border);}
+    .timeline-item{display:flex;gap:1.5rem;margin-bottom:2rem;}
+    .tl-dot{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;z-index:1;border:3px solid var(--white);box-shadow:var(--shadow);}
+    .tl-body{background:var(--cream);border-radius:14px;padding:1.2rem 1.4rem;flex:1;border:1px solid var(--border);box-shadow:var(--shadow);}
+    .tl-body h3{font-weight:700;color:var(--navy);font-size:1rem;}
+    .tl-body .institute{color:var(--blue);font-size:0.88rem;font-weight:600;margin:0.2rem 0;}
+    .tl-body .period{color:var(--gray);font-size:0.8rem;display:flex;align-items:center;gap:0.4rem;margin-bottom:0.5rem;}
+    .tl-body p{color:var(--gray);font-size:0.88rem;line-height:1.6;}
+    .grade-badge{display:inline-block;background:var(--accent-light);color:var(--accent);padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;margin-top:0.5rem;}
+
+    /* ─────────────────────────────────────────────
+       REVIEWS — VERTICAL stacked single-column cards
+    ───────────────────────────────────────────── */
+    #reviews{background:var(--cream);}
+    .reviews-list{
+      display:flex;
+      flex-direction:column;   /* ← stacked vertically */
+      gap:1.5rem;
+      max-width:720px;
+      margin:0 auto;
+    }
+    .review-card{
+      background:var(--white);
+      border-radius:18px;
+      padding:2rem 2rem 1.6rem;
+      border:1.5px solid var(--border);
+      box-shadow:var(--shadow);
+      position:relative;
+      transition:all 0.3s;
+    }
+    .review-card:hover{border-color:var(--blue);box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+    .rv-quote{font-size:3rem;color:var(--blue);opacity:0.12;font-family:'Playfair Display',serif;line-height:1;position:absolute;top:1rem;right:1.5rem;}
+    .rv-stars{display:flex;gap:0.2rem;margin-bottom:0.9rem;}
+    .rv-stars i{color:var(--accent);font-size:0.9rem;}
+    .rv-text{color:var(--gray);line-height:1.8;font-size:0.95rem;margin-bottom:1.4rem;font-style:italic;}
+    .rv-person{display:flex;align-items:center;gap:0.9rem;border-top:1px solid var(--border);padding-top:1rem;}
+    .rv-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:#fff;flex-shrink:0;}
+    .rv-info .rv-name{font-weight:700;color:var(--navy);font-size:0.93rem;}
+    .rv-info .rv-role{color:var(--gray);font-size:0.78rem;margin-top:0.1rem;}
+    .rv-badge{display:inline-flex;align-items:center;gap:0.3rem;background:var(--blue-light);color:var(--blue);padding:0.18rem 0.55rem;border-radius:4px;font-size:0.72rem;font-weight:700;margin-top:0.4rem;}
+
+    /* RESUME */
+    #resume{background:var(--white);}
+    .resume-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;max-width:1000px;margin:0 auto;}
+    .resume-card{background:var(--cream);border-radius:20px;border:2px solid var(--border);padding:2rem;box-shadow:var(--shadow-lg);}
+    .resume-card h4{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);font-weight:700;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.5rem;}
+    .resume-rows{display:flex;flex-direction:column;gap:0.7rem;}
+    .rr{display:flex;align-items:flex-start;gap:0.75rem;padding:0.7rem 0.9rem;border-radius:10px;background:var(--white);border:1px solid var(--border);}
+    .rr i{color:var(--blue);font-size:0.9rem;margin-top:3px;flex-shrink:0;}
+    .rr-lbl{font-size:0.7rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:0.4px;}
+    .rr-val{font-size:0.9rem;color:var(--navy);font-weight:600;margin-top:1px;}
+    .resume-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
+    .resume-tags span{background:var(--blue-light);color:var(--blue);padding:0.25rem 0.7rem;border-radius:5px;font-size:0.75rem;font-weight:700;}
+    .resume-cta-col{display:flex;flex-direction:column;gap:1.4rem;}
+    .resume-cta-col h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--navy);}
+    .resume-cta-col p{color:var(--gray);line-height:1.75;font-size:0.95rem;}
+    .resume-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-dl{background:var(--blue);color:#fff;padding:0.85rem 1.8rem;border-radius:8px;font-size:0.95rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:all 0.2s;}
+    .btn-dl:hover{background:var(--navy);transform:translateY(-2px);box-shadow:var(--shadow);}
+    .btn-view2{border:2px solid var(--blue);color:var(--blue);padding:0.85rem 1.8rem;border-radius:8px;font-size:0.95rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:all 0.2s;background:transparent;}
+    .btn-view2:hover{background:var(--blue);color:#fff;transform:translateY(-2px);}
+
+    /* CONTACT */
+    #contact{background:var(--cream);}
+    .contact-wrapper{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+    .contact-info h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--navy);margin-bottom:0.8rem;}
+    .contact-info p{color:var(--gray);line-height:1.7;margin-bottom:2rem;}
+    .contact-items{display:flex;flex-direction:column;gap:1rem;}
+    .contact-item{display:flex;align-items:center;gap:1rem;padding:1rem;border-radius:12px;border:1px solid var(--border);background:var(--white);transition:all 0.2s;}
+    .contact-item:hover{border-color:var(--blue);transform:translateX(4px);}
+    .c-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.1rem;flex-shrink:0;}
+    .c-lbl{font-size:0.75rem;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+    .c-val{font-size:0.93rem;color:var(--navy);font-weight:600;}
+    .contact-form{display:flex;flex-direction:column;gap:1rem;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-group{display:flex;flex-direction:column;gap:0.4rem;}
+    .form-group label{font-size:0.82rem;font-weight:600;color:var(--text);}
+    .form-group input,.form-group textarea,.form-group select{padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);background:var(--white);outline:none;transition:border-color 0.2s;resize:vertical;}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);}
+    .form-group textarea{min-height:130px;}
+    .btn-submit{background:var(--blue);color:#fff;border:none;padding:0.85rem 2rem;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;font-family:'DM Sans',sans-serif;}
+    .btn-submit:hover{background:var(--navy);transform:translateY(-2px);box-shadow:var(--shadow);}
+    .form-success{display:none;background:#ecfdf5;color:#047857;padding:1rem;border-radius:8px;font-size:0.9rem;font-weight:600;text-align:center;border:1px solid #6ee7b7;margin-top:0.5rem;}
+
+    /* FOOTER */
+    footer{background:var(--navy);color:rgba(255,255,255,0.75);padding:2.5rem 5%;text-align:center;}
+    .footer-inner{max-width:1200px;margin:0 auto;}
+    .footer-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:0.8rem;}
+    .footer-logo span{color:var(--accent);}
+    .footer-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+    .footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+    .footer-links a:hover{color:#fff;}
+    .footer-socials{display:flex;justify-content:center;gap:0.8rem;margin-bottom:1.5rem;}
+    .footer-socials a{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:0.9rem;transition:all 0.2s;}
+    .footer-socials a:hover{background:var(--blue);color:#fff;}
+    footer p{font-size:0.82rem;color:rgba(255,255,255,0.4);}
+
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* SCROLL TOP */
+    #scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;border:none;cursor:pointer;font-size:1rem;box-shadow:var(--shadow-lg);transition:all 0.25s;display:none;align-items:center;justify-content:center;z-index:99;}
+    #scrollTop.show{display:flex;}
+    #scrollTop:hover{background:var(--navy);transform:translateY(-3px);}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-content{grid-template-columns:1fr;text-align:center;gap:2.5rem;}
+      .hero-photo{order:-1;}
+      .photo-wrapper{width:240px;height:290px;}
+      .hero-socials{justify-content:center;}
+      .stats-row{justify-content:center;}
+      .about-grid{grid-template-columns:1fr;}
+      .contact-wrapper{grid-template-columns:1fr;}
+      .resume-wrapper{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .info-grid{grid-template-columns:1fr;}
+      .skillbars-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px){
+      nav{padding:0 4%;}
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#fff;padding:1.5rem 5%;border-bottom:1px solid var(--border);box-shadow:var(--shadow);gap:1.2rem;z-index:99;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ NAVBAR ════════ -->
+<nav>
+  <div class="nav-logo">Apeksha<span>RK.</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skillbars">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><i class="fas fa-graduation-cap"></i> FY IT Engineering · MIT AOE Pune</div>
+      <h1>Hi, I'm <span class="highlight">Apeksha Khaladkar</span></h1>
+      <div class="hero-typed" id="typedText">Aspiring Engineer</div>
+      <p class="hero-subtitle">A passionate first-year IT engineering student exploring technology, building real-world projects, and growing every single day.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn-primary"><i class="fas fa-code"></i> View Projects</a>
+        <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/apekshakhaladkar-crypto" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/apeksha-rk" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/apekshakhaladkar8803" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item"><span class="num">3+</span><span class="label">Projects</span></div>
+        <div class="stat-item"><span class="num">5+</span><span class="label">Certificates</span></div>
+        <div class="stat-item"><span class="num">8.67</span><span class="label">CGPA</span></div>
+      </div>
+    </div>
+
+    <!--
+    ┌─────────────────────────────────────────────┐
+    │  PHOTO SETUP — ONE-TIME, NO UPLOAD BUTTON   │
+    │  Just place your photo file next to this    │
+    │  HTML file in a folder called "photo/"      │
+    │  and name it  profile.jpeg                  │
+    │  e.g.  photo/profile.jpeg                   │
+    │  That's it — no button, no prompt ever.     │
+    └─────────────────────────────────────────────┘
+    -->
+    <div class="hero-photo">
+      <div class="photo-wrapper">
+        <div class="photo-frame">
+          <img src="photo/profile.jpeg" alt="Apeksha Khaladkar"
+               onerror="this.style.display='none';document.getElementById('ph1').style.display='flex';"/>
+          <div id="ph1" class="photo-ph" style="display:none;">
+            <i class="fas fa-user-circle"></i>
+            <p>Put your photo at<br><strong>photo/profile.jpeg</strong></p>
+          </div>
+        </div>
+        <div class="photo-badge">⚡ FY IT Eng.</div>
+        <div class="photo-ring">👩‍💻</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ABOUT ════════ -->
+<section id="about">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">About Me</span>
+      <h2 class="section-title">Who Am I?</h2>
+      <p class="section-sub">A curious mind, a dedicated learner, and a future engineer.</p>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <!-- Same photo path — no upload button, ever -->
+        <div class="about-photo-wrap">
+          <img src="photo/Engg Grad.jpeg" alt="Apeksha Khaladkar"
+               onerror="this.style.display='none';document.getElementById('ph2').style.display='flex';"/>
+          <div id="ph2" class="no-img-ph" style="display:none;">
+            <i class="fas fa-user"></i>
+            <p>Put your photo at<br><strong>photo/profile.jpeg</strong></p>
+          </div>
+        </div>
+      </div>
+      <div class="about-info">
+        <h3>Apeksha Ravsaheb Khaladkar</h3>
+        <p class="about-role">FY IT Engineering Student · Tech Enthusiast</p>
+        <p class="about-desc">I am a first-year Information Technology engineering student at MIT Academy of Engineering, Alandi, Pune. Passionate about bridging the gap between hardware and software through Python automation, data visualization, and robotics — committed to building efficient, real-world solutions and growing as a data-driven technologist.</p>
+        <div class="info-grid">
+          <div class="info-item"><i class="fas fa-birthday-cake"></i><span>Age: <strong>18</strong></span></div>
+          <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>Location: <strong>Pune, India</strong></span></div>
+          <div class="info-item"><i class="fas fa-university"></i><span>College: <strong>MIT AOE, Alandi</strong></span></div>
+          <div class="info-item"><i class="fas fa-cogs"></i><span>Branch: <strong>Information Technology</strong></span></div>
+          <div class="info-item"><i class="fas fa-language"></i><span>Languages: <strong>English, Hindi, Marathi</strong></span></div>
+          <div class="info-item"><i class="fas fa-envelope"></i><span>Email: <strong>apekshakhaladkar@gmail.com</strong></span></div>
+        </div>
+        <div class="skills-tabs-wrap">
+          <h4>Skills &amp; Interests</h4>
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('skills',this)">💻 Technical Skills</button>
+            <button class="tab-btn" onclick="switchTab('interests',this)">🌟 Interests &amp; Hobbies</button>
+          </div>
+          <div class="tab-panel active" id="tab-skills">
+            <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C / C++</span>
+            <span class="skill-tag">Git &amp; GitHub</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Arduino / IoT</span>
+            <span class="skill-tag">Tableau</span>
+          </div>
+          <div class="tab-panel" id="tab-interests">
+            <span class="hobby-tag">Web Development</span>
+            <span class="hobby-tag">Artificial Intelligence</span>
+            <span class="hobby-tag">Competitive Coding</span>
+            <span class="hobby-tag">Writing Poetry</span>
+            <span class="hobby-tag">Robotics</span>
+            <span class="hobby-tag">Research</span>
+            <span class="hobby-tag">Reading</span>
+          </div>
+        </div>
+        <div style="margin-top:1.8rem">
+          <a href="resume.pdf" class="btn-primary" download><i class="fas fa-download"></i> Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SKILL BARS ════════ -->
+<section id="skillbars">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Skill Matrix</span>
+      <h2 class="section-title">My Proficiency</h2>
+      <p class="section-sub">Watch the bars fill as you scroll — an honest look at where I stand.</p>
+    </div>
+    <div class="skillbars-grid reveal">
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">Python</span><span class="sb-pct">75%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:75%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">C Programming</span><span class="sb-pct">85%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:85%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">HTML / CSS</span><span class="sb-pct">80%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:80%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">VS Code</span><span class="sb-pct">85%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:85%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">Tableau</span><span class="sb-pct">80%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:80%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">Arduino IDE</span><span class="sb-pct">80%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:90%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">Git &amp; GitHub</span><span class="sb-pct">75%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:78%"></div></div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-header"><span class="sb-name">SQL</span><span class="sb-pct">70%</span></div>
+        <div class="sb-track"><div class="sb-fill" style="--w:70%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROJECTS ════════ -->
+<section id="projects">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Projects</span>
+      <h2 class="section-title">My Work</h2>
+      <p class="section-sub">Here are some projects I have built or am currently working on.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="proj-img">
+          <i class="fas fa-robot"></i>
+          <span class="proj-tag">ROBOTICS</span>
+        </div>
+        <div class="project-body">
+          <h3>Autonomous Floor Cleaning Robot</h3>
+          <p>Prototype automated cleaning robot integrating ultrasonic sensors and microcontrollers for navigation. Uses L298N motor drivers and Bluetooth control.</p>
+          <div class="project-tech"><span class="tech-tag">Arduino</span><span class="tech-tag">IoT</span><span class="tech-tag">Bluetooth</span><span class="tech-tag">Hardware</span></div>
+          <div class="project-links"><a href="photo/Robot.mp4" class="link-demo"><i class="fas fa-external-link-alt"></i> View Project</a></div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img" style="background:#fff8ec">
+          <i class="fas fa-book-open" style="color:var(--accent)"></i>
+          <span class="proj-tag" style="background:var(--accent)">PYTHON</span>
+        </div>
+        <div class="project-body">
+          <h3>Libris – Seat Booking System</h3>
+          <p>Streamlined library seat reservation system focusing on efficient data handling, Python logic, and user-friendly interaction workflows.</p>
+          <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Logic Implementation</span></div>
+          <div class="project-links">
+            <a href="photo/Libris.mp4" class="link-demo"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img" style="background:#f0fdf4">
+          <i class="fas fa-home" style="color:#16a34a"></i>
+          <span class="proj-tag" style="background:#16a34a">WEBSITE</span>
+        </div>
+        <div class="project-body">
+          <h3>Family Website</h3>
+          <p>Responsive website with well-structured sections and galleries to showcase family information, built with HTML and CSS.</p>
+          <div class="project-tech"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">Responsive</span></div>
+          <div class="project-links"><a href="photo/Family.mp4" class="link-demo"><i class="fas fa-external-link-alt"></i> Demo</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CERTIFICATES ════════ -->
+<section id="certificates">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Certificates</span>
+      <h2 class="section-title">My Certifications</h2>
+      <p class="section-sub">Globally recognised credentials I have earned to sharpen my skills.</p>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-laptop"></i></div>
+        <div class="cert-info">
+          <h4>NASSCOM</h4>
+          <div class="issuer">Digital Literacy</div>
+          <div class="cdate"><i class="far fa-calendar-alt"></i> Mar 2026</div>
+          <a href="certificates/nasscon-certificate.pdf" class="credential"><i class="fas fa-award"></i> View Credential</a>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fab fa-python"></i></div>
+        <div class="cert-info">
+          <h4>IBM</h4>
+          <div class="issuer">Python for Data Science</div>
+          <div class="cdate"><i class="far fa-calendar-alt"></i> Mar 2026</div>
+          <a href="certificates/ibm.pdf" class="credential"><i class="fas fa-award"></i> View Credential</a>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="cert-info">
+          <h4>CISCO Networking Academy</h4>
+          <div class="issuer">Python Essentials</div>
+          <div class="cdate"><i class="far fa-calendar-alt"></i> Mar 2026</div>
+          <a href="certificates/cisco-python-essentials.pdf" class="credential"><i class="fas fa-award"></i> View Credential</a>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-brain"></i></div>
+        <div class="cert-info">
+          <h4>Anthropic</h4>
+          <div class="issuer">AI &amp; Prompt Engineering Workshop</div>
+          <div class="cdate"><i class="far fa-calendar-alt"></i> Mar 2026</div>
+          <a href="certificates/anthropic.pdf" class="credential"><i class="fas fa-award"></i> View Credential</a>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-code"></i></div>
+        <div class="cert-info">
+          <h4>Algovedas</h4>
+          <div class="issuer">DSA Training</div>
+          <div class="cdate"><i class="far fa-calendar-alt"></i> Dec 2025</div>
+          <a href="certificates/algovedas.pdf" class="credential"><i class="fas fa-award"></i> View Credential</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ EDUCATION ════════ -->
+<section id="education">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Education</span>
+      <h2 class="section-title">Academic Journey</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-dot"><i class="fas fa-graduation-cap"></i></div>
+        <div class="tl-body">
+          <h3>B.Tech – Information Technology</h3>
+          <div class="institute">MIT Academy of Engineering, Alandi, Pune</div>
+          <div class="period"><i class="far fa-calendar"></i> 2025 – 2029 (Pursuing)</div>
+          <p>First-year IT student studying Engineering Mathematics, Programming Fundamentals, Digital Electronics, and Physics. Active in robotics and coding clubs.</p>
+          <div class="grade-badge">⭐ CGPA: 8.67 / 10 (Sem 1)</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-dot"><i class="fas fa-school"></i></div>
+        <div class="tl-body">
+          <h3>HSC (Class XII) – Science</h3>
+          <div class="institute">SPMM, Sharadanagar</div>
+          <div class="period"><i class="far fa-calendar"></i> 2023 – 2025</div>
+          <p>Completed 12th standard with Physics, Chemistry, and Mathematics. Focused on analytical problem-solving and logical reasoning.</p>
+          <div class="grade-badge">🏆 Percentage: 83.17%</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-dot"><i class="fas fa-book"></i></div>
+        <div class="tl-body">
+          <h3>SSC (Class X)</h3>
+          <div class="institute">New English School, Nangaon</div>
+          <div class="period"><i class="far fa-calendar"></i> 2017 – 2023</div>
+          <p>Completed 10th standard with distinction. Active participant in science exhibitions and quiz competitions.</p>
+          <div class="grade-badge">🏆 Percentage: 91.20%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ REVIEWS — VERTICAL CARDS ════════ -->
+<section id="reviews">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Reviews</span>
+      <h2 class="section-title">What People Say</h2>
+      <p class="section-sub">Kind words from professors, peers, and mentors who have worked with me.</p>
+    </div>
+
+    <div class="reviews-list">
+
+      <div class="review-card reveal">
+        <div class="rv-quote">"</div>
+        <div class="rv-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="rv-text">Apeksha is one of the most dedicated and sincere students I’ve worked with. She has a strong curiosity to learn and always puts extra effort into improving her skills. Whether it’s academics or projects, she approaches everything with confidence and positivity. Her consistency and passion for technology truly make her stand out</p>
+        <div class="rv-person">
+          <div class="rv-avatar" style="background:linear-gradient(135deg,#2d5be3,#6b8ff7)">RS</div>
+          <div class="rv-info">
+            <div class="rv-name">Rashi Shende</div>
+            <div class="rv-role">Mentor</div>
+            <div class="rv-badge"><i class="fas fa-chalkboard-teacher"></i> Guide</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card reveal">
+        <div class="rv-quote">"</div>
+        <div class="rv-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="rv-text">I’ve seen Apeksha grow from someone who was just starting out to a confident and creative learner. She manages her studies and projects really well and is always ready to help others. Her determination and never-give-up attitude inspire everyone around her, and I’m sure she’ll achieve great things in the future.</p>
+        <div class="rv-person">
+          <div class="rv-avatar" style="background:linear-gradient(135deg,#f4a826,#f97316)">TS</div>
+          <div class="rv-info">
+            <div class="rv-name">Tanvi Shende</div>
+            <div class="rv-role">Teammate</div>
+            <div class="rv-badge"><i class="fas fa-users"></i>Friend</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card reveal">
+        <div class="rv-quote">"</div>
+        <div class="rv-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="rv-text">​"Apeksha is incredibly hardworking and disciplined. She attends every lecture with dedication and always finishes her assignments before the deadline, which is truly inspiring to see. On top of being such a hard worker, she is also a very kind and supportive person. It is a pleasure to have her as a peer, and her great work ethic and personality really stand out."</p>
+        <div class="rv-person">
+          <div class="rv-avatar" style="background:linear-gradient(135deg,#16a34a,#4ade80)">SS</div>
+          <div class="rv-info">
+            <div class="rv-name">Sayali Sandur</div>
+            <div class="rv-role">Teammate</div>
+            <div class="rv-badge"><i class="fas fa-award"></i> Friend</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════ RESUME ════════ -->
+<section id="resume">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Resume</span>
+      <h2 class="section-title">My Resume</h2>
+      <p class="section-sub">A quick snapshot — download the full PDF with one click.</p>
+    </div>
+    <div class="resume-wrapper reveal">
+
+      <!-- LEFT: info card -->
+      <div class="resume-card">
+        <h4><i class="fas fa-file-alt"></i> Resume Highlights</h4>
+        <div class="resume-rows">
+          <div class="rr">
+            <i class="fas fa-user"></i>
+            <div><div class="rr-lbl">Name</div><div class="rr-val">Apeksha Ravsaheb Khaladkar</div></div>
+          </div>
+          <div class="rr">
+            <i class="fas fa-graduation-cap"></i>
+            <div><div class="rr-lbl">Degree</div><div class="rr-val">B.Tech – Information Technology (FY)</div></div>
+          </div>
+          <div class="rr">
+            <i class="fas fa-university"></i>
+            <div><div class="rr-lbl">College</div><div class="rr-val">MIT Academy of Engineering, Alandi, Pune</div></div>
+          </div>
+          <div class="rr">
+            <i class="fas fa-star"></i>
+            <div><div class="rr-lbl">CGPA</div><div class="rr-val">8.67 / 10 (Semester I)</div></div>
+          </div>
+          <div class="rr">
+            <i class="fas fa-envelope"></i>
+            <div><div class="rr-lbl">Email</div><div class="rr-val">apekshakhaladkar@gmail.com</div></div>
+          </div>
+          <div class="rr">
+            <i class="fas fa-phone"></i>
+            <div><div class="rr-lbl">Phone</div><div class="rr-val">+91 78238 35665</div></div>
+          </div>
+          <div class="rr">
+            <i class="fas fa-map-marker-alt"></i>
+            <div><div class="rr-lbl">Location</div><div class="rr-val">Pune, Maharashtra, India</div></div>
+          </div>
+        </div>
+        <div class="resume-tags">
+          <span>Python</span><span>C Programming</span><span>HTML/CSS</span>
+          <span>Arduino</span><span>Tableau</span><span>Git</span><span>SQL</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: CTA -->
+      <div class="resume-cta-col">
+        <h3>Want to know more about me?</h3>
+        <p>My resume covers my full academic background, technical skills, project work, certifications, and achievements — including the IYMC 2025 global math challenge qualification and the Anthropic AI workshop.</p>
+        <p>Feel free to download a copy or view it directly in your browser.</p>
+        <div class="resume-btns">
+          <a href="resume.pdf" download class="btn-dl"><i class="fas fa-download"></i> Download PDF</a>
+          <a href="resume.pdf" target="_blank" class="btn-view2"><i class="fas fa-eye"></i> View Online</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-sub">Have a project idea or just want to say hi? Feel free to reach out!</p>
+    </div>
+    <div class="contact-wrapper reveal">
+      <div class="contact-info">
+        <h3>Let's Connect 🤝</h3>
+        <p>I'm always open to learning, collaborating on projects, internships, or just having a great conversation about tech!</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-envelope"></i></div>
+            <div><div class="c-lbl">Email</div><div class="c-val">apekshakhaladkar@gmail.com</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-phone"></i></div>
+            <div><div class="c-lbl">Phone</div><div class="c-val">+91 78238 35665</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><div class="c-lbl">Location</div><div class="c-val">Pune, Maharashtra, India</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fab fa-linkedin"></i></div>
+            <div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/apeksha-rk</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fab fa-github"></i></div>
+            <div><div class="c-lbl">GitHub</div><div class="c-val">github.com/apekshakhaladkar-crypto</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Ram" required/></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Kale"/></div>
+          </div>
+          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="ram@example.com" required/></div>
+          <div class="form-group">
+            <label>Subject *</label>
+            <select required>
+              <option value="">Select a topic</option>
+              <option>Project Collaboration</option>
+              <option>Internship Opportunity</option>
+              <option>General Enquiry</option>
+              <option>Just Saying Hi!</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message *</label><textarea placeholder="Write your message here..." required></textarea></div>
+          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <div class="form-success" id="formSuccess"><i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Apeksha<span>RK.</span></div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skillbars">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#education">Education</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://github.com/apekshakhaladkar-crypto" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/apeksha-rk" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://instagram.com/apekshakhaladkar8803" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2025 Apeksha Khaladkar · FY IT Engineering Student · MIT AOE, Pune</p>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  /* TYPED */
+  const roles=["Aspiring Engineer","Python Developer","IoT Enthusiast","Problem Solver","AI Explorer"];
+  let ri=0,ci=0,del=false;
+  const typed=document.getElementById('typedText');
+  function type(){
+    const cur=roles[ri];
+    typed.textContent=del?cur.substring(0,ci--):cur.substring(0,ci++);
+    if(!del&&ci>cur.length){del=true;setTimeout(type,1200);return;}
+    if(del&&ci<0){del=false;ri=(ri+1)%roles.length;}
+    setTimeout(type,del?60:100);
+  }
+  type();
+
+  /* TABS */
+  function switchTab(tab,btn){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+tab).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  /* SCROLL REVEAL + animate skill bars on entry */
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{
+          e.target.classList.add('visible');
+          /* trigger skill bar fills */
+          e.target.querySelectorAll('.sb-fill').forEach(b=>b.classList.add('go'));
+        }, i*80);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  reveals.forEach(el=>obs.observe(el));
+
+  /* SCROLL TOP */
+  const sb=document.getElementById('scrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',window.scrollY>400));
+
+  /* HAMBURGER */
+  function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+
+  /* CONTACT FORM */
+  function handleSubmit(e){
+    e.preventDefault();
+    document.getElementById('formSuccess').style.display='block';
+    e.target.reset();
+    setTimeout(()=>document.getElementById('formSuccess').style.display='none',5000);
+  }
+
+  /* ACTIVE NAV */
+  const secs=document.querySelectorAll('section[id]');
+  window.addEventListener('scroll',()=>{
+    let sy=window.scrollY+100;
+    secs.forEach(s=>{
+      const l=document.querySelector(`.nav-links a[href="#${s.id}"]`);
+      if(l){
+        if(sy>=s.offsetTop&&sy<s.offsetTop+s.offsetHeight){
+          document.querySelectorAll('.nav-links a').forEach(a=>a.style.color='');
+          l.style.color='var(--blue)';
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
